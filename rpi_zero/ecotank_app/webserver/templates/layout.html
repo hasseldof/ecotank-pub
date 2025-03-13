@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>EcoTank</title>
+      <link rel="icon" href="static/content/favicon.png">
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#7952b3" />
+      <link rel="stylesheet" href="../static/content/bootstrap.min.css" />
+      <link
+         rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+         crossorigin="anonymous"
+         />
+      <link
+         rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+         crossorigin="anonymous"
+         />
+      <style>
+         .home-text {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px; /* Tilføj lidt plads til venstre for teksten */
+         }
+
+
+         .form-group {
+         margin-bottom: 20px;
+         }
+         .bi {
+         vertical-align: -0.125em;
+         fill: currentColor;
+         }
+         .text-small {
+         font-size: 85%;
+         }
+         .dropdown-toggle {
+         outline: 0;
+         }
+         .bd-placeholder-img {
+         font-size: 1.125rem;
+         text-anchor: middle;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         user-select: none;
+         }
+         @media (min-width: 768px) {
+         .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+         <symbol id="bootstrap" viewBox="0 0 54.565 22.04">
+             <title>EcoTank</title>
+             <image href="../static/content/EcoTank.svg" x="0" y="0" height="100%" width="100%" preserveAspectRatio="xMidYMid meet"></image>
+         </symbol>
+         <symbol id="home" viewBox="0 0 16 16">
+            <path
+               d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"
+               />
+         </symbol>
+         <symbol id="speedometer2" viewBox="0 0 16 16">
+            <path
+               d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"
+               />
+            <path
+               fill-rule="evenodd"
+               d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"
+               />
+         </symbol>
+         <symbol id="cogtool" viewBox="0 0 512 512">
+            <path
+               d="M255.28 119.72h-19.06c-.88-2.36-1.85-4.7-2.89-6.98l13.48-13.48a10.2 10.2 0 0 0 0-14.42L206.4 44.43a10.2 10.2 0 0 0-14.43 0L178.5 57.9c-2.3-1.04-4.62-2-6.99-2.89V35.95a10.2 10.2 0 0 0-10.2-10.2h-57.14a10.2 10.2 0 0 0-10.2 10.2v19.06c-2.36.89-4.7 1.85-6.99 2.9L73.51 44.42a10.2 10.2 0 0 0-14.43 0l-40.4 40.4a10.2 10.2 0 0 0 0 14.43l13.47 13.48c-1.04 2.29-2 4.62-2.89 6.98H10.2A10.2 10.2 0 0 0 0 129.92v57.15a10.2 10.2 0 0 0 10.2 10.2h19.06c.88 2.36 1.85 4.69 2.9 6.98l-13.49 13.48a10.2 10.2 0 0 0 0 14.42l40.41 40.41a10.2 10.2 0 0 0 14.43 0l13.48-13.48c2.29 1.05 4.62 2.01 6.98 2.9v19.06a10.2 10.2 0 0 0 10.2 10.2h57.15a10.2 10.2 0 0 0 10.2-10.2v-19.07c2.35-.88 4.68-1.84 6.97-2.89l13.48 13.48a10.2 10.2 0 0 0 14.43 0l40.4-40.4a10.2 10.2 0 0 0 0-14.43l-13.47-13.48c1.04-2.3 2-4.62 2.9-6.98h19.05a10.2 10.2 0 0 0 10.2-10.2v-57.15a10.2 10.2 0 0 0-10.2-10.2zm-10.2 57.15h-16.2a10.2 10.2 0 0 0-9.77 7.3 89.57 89.57 0 0 1-7.14 17.24 10.2 10.2 0 0 0 1.75 12.08l11.45 11.45-25.99 25.98-11.45-11.45a10.2 10.2 0 0 0-12.07-1.75 89.73 89.73 0 0 1-17.25 7.14 10.2 10.2 0 0 0-7.3 9.78v16.2h-36.74v-16.2c0-4.52-2.97-8.5-7.3-9.78a89.67 89.67 0 0 1-17.24-7.14 10.2 10.2 0 0 0-12.08 1.75L66.3 250.92l-26-25.98 11.46-11.45c3.2-3.2 3.9-8.11 1.75-12.08a89.66 89.66 0 0 1-7.14-17.24 10.2 10.2 0 0 0-9.78-7.3H20.4v-36.75h16.2c4.52 0 8.5-2.97 9.78-7.3a89.6 89.6 0 0 1 7.14-17.24 10.2 10.2 0 0 0-1.75-12.08L40.31 92.05 66.3 66.06l11.45 11.45a10.2 10.2 0 0 0 12.08 1.75 89.66 89.66 0 0 1 17.24-7.14 10.2 10.2 0 0 0 7.3-9.78V46.15h36.75v16.2c0 4.51 2.96 8.5 7.3 9.78a89.6 89.6 0 0 1 17.23 7.14 10.2 10.2 0 0 0 12.08-1.75l11.45-11.45 25.99 25.98-11.45 11.45a10.2 10.2 0 0 0-1.75 12.08 89.66 89.66 0 0 1 7.14 17.24 10.2 10.2 0 0 0 9.78 7.3h16.2v36.75z"
+               />
+            <path
+               d="M132.74 102.41a56.15 56.15 0 0 0-56.08 56.08c0 30.93 25.16 56.09 56.08 56.09s56.08-25.16 56.08-56.09a56.15 56.15 0 0 0-56.08-56.08zm0 91.77c-19.68 0-35.69-16-35.69-35.69 0-19.67 16.01-35.68 35.69-35.68s35.69 16 35.69 35.68-16.01 35.69-35.69 35.69zM319.28 296.97a10.2 10.2 0 0 0-14.42 0l-4.78 4.77a10.2 10.2 0 0 0 14.43 14.42l4.77-4.77a10.2 10.2 0 0 0 0-14.42z"
+               />
+            <path
+               d="M498.3 137.13a10.2 10.2 0 0 0-16.16-2.32l-69.61 69.62-26.35-26.35 69.62-69.61a10.2 10.2 0 0 0-2.32-16.17 113.22 113.22 0 0 0-69.1-12.67 111.37 111.37 0 0 0-64.2 31.87 111.64 111.64 0 0 0-32.92 79.47c0 7.92.82 15.71 2.41 23.29L122.31 381.62a60.9 60.9 0 0 0-17.95 43.34 60.9 60.9 0 0 0 17.95 43.34 60.9 60.9 0 0 0 43.34 17.95A60.89 60.89 0 0 0 209 468.29l167.42-167.41c7.65 1.6 15.44 2.41 23.23 2.41 28.77 0 57.56-10.95 79.46-32.86a111.38 111.38 0 0 0 31.88-64.2 113.25 113.25 0 0 0-12.67-69.1zM194.58 453.87a40.93 40.93 0 0 1-57.83 0 40.94 40.94 0 0 1 0-57.83l159.93-159.93c1.76 4.03 3.77 7.95 6.01 11.75L148.21 402.33c-5.35 5.35-8.3 12.47-8.3 20.03s2.96 14.68 8.3 20.03c5.36 5.36 12.47 8.3 20.04 8.3s14.68-2.95 20.03-8.3l101.7-101.69a10.2 10.2 0 0 0-14.43-14.43l-101.7 101.7a7.87 7.87 0 0 1-5.6 2.32c-2.12 0-4.11-.82-5.61-2.32a7.88 7.88 0 0 1-2.32-5.6c0-2.13.82-4.12 2.32-5.62l152.13-152.12a111.83 111.83 0 0 0 39.77 29.27L194.57 453.87zm270.11-197.86c-35.86 35.86-94.22 35.86-130.08 0a91.38 91.38 0 0 1-26.94-65.04 91.37 91.37 0 0 1 26.94-65.04 92.32 92.32 0 0 1 65.27-26.85 91.81 91.81 0 0 1 31.08 5.4l-66.4 66.4a10.2 10.2 0 0 0 0 14.42l40.77 40.76a10.2 10.2 0 0 0 14.42 0l66.4-66.4c11.88 33.03 3.88 71-21.46 96.35z"
+               />
+         </symbol>
+         <symbol id="people-circle" viewBox="0 0 16 16">
+            <image href="../static/content/helpicon.svg" x="-1" y="-1" height="18" width="18"></image>
+         </symbol>
+         <symbol id="grid" viewBox="0 0 16 16">
+            <image href="../static/content/logicon.svg" x="0" y="0" height="16" width="16"></image>
+         </symbol>
+      </svg>
+      <main>
+        <header>
+          <div class="px-3 py-2 bg-dark text-white">
+              <div class="container">
+                <div
+                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                    >
+                    <a
+                      href="/"
+                      class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+                      >
+                      <svg
+                          class="bi me-2"
+                          width="99"
+                          height="40"
+                          role="img"
+                          aria-label="Bootstrap"
+                          >
+                          <use xlink:href="#bootstrap" />
+                      </svg>
+                    </a>
+                    <ul
+                      class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+                      >
+                      <li>
+                          <a
+                            href="{{ url_for('views.home') }}"
+                            class="nav-link text-white"
+                            >
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                <use xlink:href="#home" />
+                            </svg>
+                            Hjem
+                          </a>
+                      </li>
+                      <li>
+                          <a
+                            href="{{ url_for('views.dashboard') }}"
+                            class="nav-link text-white"
+                            >
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                <use xlink:href="#speedometer2" />
+                            </svg>
+                            El-pris Dashboard
+                          </a>
+                      </li>
+                      <li>
+                          <a
+                            href="{{ url_for('auth.settings') }}"
+                            class="nav-link text-white"
+                            >
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                <use xlink:href="#cogtool" />
+                            </svg>
+                            Indstillinger
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{ url_for('views.log') }}" class="nav-link text-white">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                <use xlink:href="#grid" />
+                            </svg>
+                            Log
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{ url_for('views.help') }}" class="nav-link text-white">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                <use xlink:href="#people-circle" />
+                            </svg>
+                            Hjælp
+                          </a>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+        </header>
+      {% if temp_warning %}
+      <div class="alert alert-danger" role="alert">
+      {{ temp_warning }}
+      </div>
+      {% endif %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      {% if category == 'error' %}    
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="container body-content">
+         {% block content %} {% endblock %}
+         <hr />
+         <footer>
+            <p>&copy; {{ year }} - PRJ2 Group17</p>
+         </footer>
+      </div>
+      <script
+         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+         crossorigin="anonymous"
+         ></script>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+         crossorigin="anonymous"
+         ></script>
+      <script
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+         crossorigin="anonymous">
+      </script>
+
+
+      <!-- <script src="/static/scripts/jquery-1.10.2.js"></script>
+      <script src="/static/scripts/bootstrap.js"></script>
+      <script src="/static/scripts/respond.js"></script> -->
+      {% block scripts %}{% endblock %}
+   </body>
+</html>

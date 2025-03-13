@@ -1,0 +1,7 @@
+Flask
+bokeh
+requests
+flask_sqlalchemy
+pyserial
+sqlaclhemy
+

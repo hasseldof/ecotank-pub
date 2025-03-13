@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block content %}
+<br />
+{%if system_data.sys_power%}
+<div class="custom-control custom-switch">
+  <input
+    type="checkbox"
+    class="custom-control-input"
+    id="customSwitch1"
+    checked
+    onclick="setSystemPower(this.checked)"
+  />
+  <label class="custom-control-label" for="customSwitch1">Tænd/Sluk</label>
+</div>
+<h1 align="center">Status</h1>
+<h3 id="waterTemp" align="center">
+  Vandtemperatur er: {{ system_data.water_temp |round(1) }}°C
+</h3>
+<h3 id="waterLevel" align="center">
+  Vandstand er: {{ system_data.water_level|round |int }}% ({{water_volume |round(2)}}L)
+</h3>
+{%if not override_settings.toggled_on%}
+<div class="text-center mt-5">
+  <button
+    type="button"
+    class="btn btn-success"
+    onclick="window.location.href='/manual-heating'"
+  >
+    Start manuel opvarmning
+  </button>
+</div>
+{%else%}
+<div class="text-center mt-5">
+  <button
+    type="button"
+    class="btn btn-danger"
+    onclick="window.location.href='/manual-heating'"
+  >
+    Stop manuel opvarmning
+  </button>
+  <p class="mt-3">
+    Varmer nu op til den indstillede standardtemperatur:
+    <strong>{{user_settings.std_temp}}°C</strong>
+  </p>
+</div>
+{%endif%} {% else %}
+<div class="custom-control custom-switch">
+  <input
+    type="checkbox"
+    class="custom-control-input"
+    id="customSwitch1"
+    onclick="setSystemPower(this.checked)"
+  />
+  <label class="custom-control-label" for="customSwitch1">Tænd/Sluk</label>
+</div>
+<h1 align="center">Systemet er slukket</h1>
+{% endif %} {% endblock %} {% block scripts %}
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='scripts/home.js') }}"
+></script>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %} {% block content %}
+<form method="POST">
+  <h3 align="center">Indstillinger</h3>
+  <div class="form-group">
+    <label for="minTemp">Minimumstemperatur for vandtank: </label>
+    <input
+      type="number"
+      class="form-control"
+      id="minTemp"
+      name="minTemp"
+      value="{{ existing_settings.min_temp }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="stdTemp">Standardtemperatur for opvarming: </label>
+    <input
+      type="number"
+      class="form-control"
+      id="stdTemp"
+      name="stdTemp"
+      value="{{ existing_settings.std_temp }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="highTemp">Høj temperatur i vandtank</label>
+    <input
+      type="number"
+      class="form-control"
+      id="highTemp"
+      name="highTemp"
+      value="{{ existing_settings.high_temp }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="electricityPriceLimit"
+      >Elpris hvor opvarming til høj temperatur påbegyndes</label
+    >
+    <input
+      type="float"
+      class="form-control"
+      id="electricityPriceLimit"
+      name="electricityPriceLimit"
+      value="{{ existing_settings.price_threshold }}"
+    />
+  </div>
+  <label for="electricityPriceRegion" class="form-label">Vælg område der indhentes elpris for:</label>
+  <select class="form-select" id="electricityPriceRegion" name="electricityPriceRegion">
+    <option value="DK1"{% if existing_settings.price_region == 'DK1' %}selected{% endif %}>Aarhus/Vest for storebælt</option>
+    <option value="DK2"{% if existing_settings.price_region == 'DK2' %}selected{% endif %}>København/Øst for storebælt</option>
+  </select>
+
+
+<!-- Time interval for when to heat water -->
+<div class="form-group">
+  <p class="mt-3 font-weight-bold">Tidspunkter for hvornår vandet skal opvarmes</p>
+  <label for="startTime" class="form-label">Starttid:</label>
+  <input type="time" class="form-control" id="startTime" name="startTime" />
+</div>
+<div class="form-group">
+  <label for="endTime" class="form-label">Sluttid:</label>
+  <input type="time" class="form-control" id="endTime" name="endTime" />
+</div>
+
+<!-- Add-to-list button -->
+<button type="button" id="addInterval" class="btn btn-primary">Tilføj interval</button>
+
+<ul class="list-group list-group-flush" id="intervalList">
+  {% for time_interval in existing_settings.time_intervals %}
+    <li class="list-group-item">
+      {{ time_interval.start_time.strftime('%H:%M') }} - {{ time_interval.end_time.strftime('%H:%M') }}
+      <span class="badge badge-secondary float-right" style="cursor: pointer;">&times;</span>
+      <input type="hidden" name="timeIntervals[]" value="{{ time_interval.start_time.strftime('%H:%M') }} - {{ time_interval.end_time.strftime('%H:%M') }}">
+    </li>
+  {% endfor %}
+</ul>
+
+
+  <br />
+  <button type="submit" class="btn btn-success">Gem indstilinger</button>
+</form>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='scripts/settings.js') }}"
+></script>
+
+{% endblock %}

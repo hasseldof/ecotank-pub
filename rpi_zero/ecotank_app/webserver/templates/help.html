@@ -1,0 +1,74 @@
+{% extends "layout.html" %} {% block content %}
+
+<h2>Kom i gang med EcoTank</h2>
+<div class="dropdown" align="center">
+  <button
+    class="btn btn-secondary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    Hvad søger du hjælp til
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a
+      class="dropdown-item"
+      href="#"
+      data-gif="help1.gif"
+      data-text="Herunder ses det hvordan man indstiller systemet:"
+      >Indstil system</a
+    >
+    <a
+      class="dropdown-item"
+      href="#"
+      data-gif="help2.gif"
+      data-text="Herunder ses det hvordan man indstiller tidsintervaller:"
+      >Indstil tidsinterval</a
+    >
+    <a
+      class="dropdown-item"
+      href="#"
+      data-gif="help3.gif"
+      data-text="Herunder ses det hvordan man fjerner tidsintervaller:"
+      >Fjern tidsinterval</a
+    >
+  </div>
+</div>
+
+<div class="mt-3" id="gifContainer" align="center"></div>
+
+<script>
+  document;
+  document
+    .getElementById("dropdownMenuButton")
+    .addEventListener("click", function () {
+      document.getElementById("gifContainer").innerHTML = "";
+    });
+
+  document.querySelectorAll(".dropdown-item").forEach(function (item) {
+    item.addEventListener("click", function (event) {
+      event.preventDefault();
+      var gifName = this.getAttribute("data-gif");
+      var gifText = this.getAttribute("data-text"); // Hent den specifikke tekst
+      var gifContainer = document.getElementById("gifContainer");
+
+      if (gifName) {
+        var p = document.createElement("p");
+        p.innerText = gifText; // Brug den specifikke tekst
+
+        var img = document.createElement("img");
+        img.src = "/static/content/" + gifName;
+        img.style.width = "500px";
+        img.style.height = "auto";
+
+        gifContainer.innerHTML = "";
+        gifContainer.appendChild(p);
+        gifContainer.appendChild(img);
+      }
+    });
+  });
+</script>
+
+{% endblock %}
